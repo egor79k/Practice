@@ -25,7 +25,7 @@ public:
 		cap (DEFAULT_SIZE),
 		data (traits::allocate (alloc, DEFAULT_SIZE)),
 		allocator (alloc)
-	{};
+	{}
 	
 	vector (size_t sz, const ValueType &value = ValueType (), const AllocType &alloc = AllocType ());
 
