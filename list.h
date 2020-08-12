@@ -153,10 +153,6 @@ list<ValueType, AllocType> &list<ValueType,AllocType>::operator= (const list &ot
 	if (this == &other)
 		return *this;
 
-	//Node *current    = nullptr;
-	//Node *previous   = nullptr;
-	//Node *other_curr = other.head;
-
 	destroy ();
 
 	if (traits::propagate_on_container_copy_assignment::value)
@@ -200,10 +196,6 @@ list<ValueType, AllocType> &list<ValueType, AllocType>::operator= (list&& other)
 
 	if (allocator != other.allocator && !traits::propagate_on_container_move_assignment::value)
 	{
-		//Node *current = nullptr;
-		//Node *previous = nullptr;
-		//Node *other_curr = other.head;
-
 		if (sz != 0)
 		{
 			head = traits::allocate (allocator, 1);
