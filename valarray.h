@@ -55,3 +55,58 @@ valarray<T>::valarray (const valarray &other) :
 
 
 
+template <typename T>
+valarray<T>::valarray (valarray &&other) noexcept :
+	sz (other.sz),
+	data (other.data)
+{
+	other.size = 0;
+	other.data = nullptr;
+}
+
+
+
+template <typename T>
+valarray<T> &valarray<T>::operator= (const valarray &other)
+{
+	if (this == &other)
+		return *this;
+
+	delete[] data;
+	
+	sz = other.sz;
+	
+	for (size_t i = 0; i < sz; ++i)
+		data[i] = other.data[i];
+	
+	return *this;
+}
+
+
+
+template <typename T>
+valarray<T> &valarray<T>::operator= (valarray &&other)
+{
+	if (this == &other)
+		return *this;
+
+	delete[] data;
+	
+	sz = other.sz;
+	data = other.data;
+	other.sz = 0;
+	other.data = nullptr;
+	
+	return *this;
+}
+
+
+
+template <typename T>
+valarray<T> &valarray<T>::operator= (const T &val)
+{
+	for (size_t i = 0; i < sz; ++i)
+		data[i] = val;
+	
+	return *this;
+}
