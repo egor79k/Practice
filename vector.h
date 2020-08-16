@@ -1,7 +1,6 @@
 #include <exception>
 #include <iostream>
-
-
+#include "random_access_iterator.h"
 
 
 template <typename ValueType, typename AllocType = std::allocator<ValueType>>
@@ -65,6 +64,26 @@ public:
 
 	//ValueType *data () noexcept { return datal; }
 	//const ValueType *data () const noexcept { return datal; }
+
+	#ifdef RANDOM_ACCESS_ITERATOR_INCLUDED
+
+	typedef random_access_iterator<ValueType> iterator;
+
+	
+	iterator begin ()
+	{ return iterator (&data[0]); }
+
+	const iterator begin () const
+	{ return iterator (&data[0]); }
+
+	
+	iterator end ()
+	{ return iterator (&data[sz - 1]); }
+
+	const iterator end () const
+	{ return iterator (&data[sz - 1]); }
+
+	#endif
 };
 
 

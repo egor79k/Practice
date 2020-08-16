@@ -75,6 +75,7 @@ valarray<T> &valarray<T>::operator= (const valarray &other)
 	delete[] data;
 	
 	sz = other.sz;
+	data
 	
 	for (size_t i = 0; i < sz; ++i)
 		data[i] = other.data[i];
