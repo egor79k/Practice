@@ -1,17 +1,14 @@
 #include <iostream>
-
-#include "vector.h"
+#include "shared_ptr.h"
 
 
 int main ()
 {
-	vector<int> v_1 (16);
-	auto it = v_1.begin ();
-	for (it; it < v_1.end (); ++it)
-		std::cout << *it;
-	for (int i = 0; i < v_1.size (); ++i)
-		v_1[i] = i + 1;
-	for (it; it >= v_1.begin (); --it)
-		std::cout << *it;
+	shared_ptr<int> p (new int (1));
+	shared_ptr<int> pp (new int (2));
+	p = pp;
+	std::cout << p.use_count () << pp.use_count ();
+	std::cout << *p << *pp;
+
 	return 0;
 }

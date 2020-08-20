@@ -62,6 +62,25 @@ public:
 	void pop_back   ();
 	void push_front (const ValueType &val);
 	void pop_front  ();
+
+
+	#ifdef BIDIRECTIONAL_ITERATOR_INCLUDED
+	typedef bidirectional_iterator<Node> iterator;
+
+	iterator &begin ()
+	{ iterator (head); }
+
+	const iterator &begin () const
+	{ iterator (head); }
+
+
+	iterator &end ()
+	{ iterator (tail); }
+
+	const iterator &end () const
+	{ iterator (tail); }
+	
+	#endif
 };
 
 
