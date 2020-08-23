@@ -51,4 +51,28 @@ public:
 		else
 			--count->weak;
 	}
+
+	weak_ptr &operator= (const weak_ptr &other)
+	{
+		if (this == &other)
+			return *this;
+
+		~weak_ptr ();
+		pointer = other.pointer;
+		count = other.count;
+		return *this;
+	}
+
+	weak_ptr &operator= (weak_ptr &&other)
+	{
+		if (this == &other)
+			return *this;
+
+		~weak_ptr ();
+		pointer = other.pointer;
+		count = other.count;
+		other.pointer = nullptr;
+		other.count = nullptr;
+		return *this;
+	}
 };
