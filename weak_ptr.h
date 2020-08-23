@@ -60,6 +60,7 @@ public:
 		~weak_ptr ();
 		pointer = other.pointer;
 		count = other.count;
+		++count->weak;
 		return *this;
 	}
 
@@ -75,4 +76,10 @@ public:
 		other.count = nullptr;
 		return *this;
 	}
+
+	bool expired () const
+	{ return count->shared == 0; }
+
+	shared_ptr<ValueType> lock () const noexcept
+	{ return expired () ? shared_ptr () : shared_ptr (count, pointer); }
 };
