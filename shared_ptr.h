@@ -70,7 +70,12 @@ public:
 	ValueType *operator-> () const noexcept
 	{ return h->pointer; }
 
-
 	size_t use_count ()
 	{ return h->count; }
 };
+
+
+
+template <typename T, typename... Args>
+shared_ptr<T> make_shared (Args &&... args)
+{ return shared_ptr<T> (new T (std::forward<Args> (args)...)); }
